@@ -1,13 +1,23 @@
-//import react into the bundle
-import React from "react";
-import ReactDOM from "react-dom/client";
+document.addEventListener("DOMContentLoaded", () => {
+    let currentColor = "red";
 
-// include your styles into the webpack bundle
-import "../styles/index.css";
+    const changeColor = () => {
+        document.getElementById("red").classList.remove("active");
+        document.getElementById("yellow").classList.remove("active");
+        document.getElementById("green").classList.remove("active");
 
-//import your own components
-import Home from "./component/home.jsx";
+        if (currentColor === "red") {
+            currentColor = "yellow";
+            document.getElementById("yellow").classList.add("active");
+        } else if (currentColor === "yellow") {
+            currentColor = "green";
+            document.getElementById("green").classList.add("active");
+        } else {
+            currentColor = "red";
+            document.getElementById("red").classList.add("active");
+        }
+    };
 
-//render your react application
-ReactDOM.createRoot(document.getElementById('app')).render(<Home/>);
-
+    document.getElementById("changeColor").addEventListener("click", changeColor);
+    document.getElementById("red").classList.add("active");
+});
